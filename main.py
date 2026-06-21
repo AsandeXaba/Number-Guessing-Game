@@ -37,20 +37,28 @@ def main():
     chances = level_chances[level - 1]
     print(f"====You have {chances} chances. Let's get started.====\n")
 
-    for chance in range(1, chances + 1):
-        guess = choice_selector(100, "Enter your guess: ")
+    while True:
+        for chance in range(1, chances + 1):
+            guess = choice_selector(100, "Enter your guess: ")
 
-        if guess > random_number:
-            print(f"Incorrect! The number is less than {guess}")
-        elif guess < random_number:
-            print(f"Incorrect! The number is greater than {guess}")
+            if guess > random_number:
+                print(f"Incorrect! The number is less than {guess}")
+            elif guess < random_number:
+                print(f"Incorrect! The number is greater than {guess}")
+            else:
+                print(f"Congratulations! You guessed the correct number in {chance} attempts.")
+                break
+
+            print(f"You have {chances - chance} remaining chances...\n")
         else:
-            print(f"Congratulations! You guessed the correct number in {chance} attempts.")
-            break
+            print("Oops... You ran out of chances.\n")
 
-        print(f"You have {chances - chance} remaining chances...\n")
-    else:
-        print("Oops... You ran out of chances.\n")
+        option = input("Would you like to play again(Y/N)? ").upper()
+        if option == "Y":
+            print("\nGreat! Let's go for another round...\n")
+            continue
+        print("\nThat was a great game, let's play again next time.\n=====Bye=====")
+        break
 
 
 if __name__ == "__main__":
